@@ -489,39 +489,41 @@ const Home = () => {
   }, [canvasObjects]);
 
   return (
-    <main className='h-screen overflow-hidden'>
-      <Navbar
-        imageInputRef={imageInputRef}
-        activeElement={activeElement}
-        handleImageUpload={(e: any) => {
-          // prevent the default behavior of the input element
-          e.stopPropagation();
+    <>
+      <main className='h-screen overflow-hidden'>
+        <Navbar
+          imageInputRef={imageInputRef}
+          activeElement={activeElement}
+          handleImageUpload={(e: any) => {
+            // prevent the default behavior of the input element
+            e.stopPropagation();
 
-          handleImageUpload({
-            file: e.target.files[0],
-            canvas: fabricRef as any,
-            shapeRef,
-            syncShapeInStorage,
-          });
-        }}
-        handleActiveElement={handleActiveElement}
-      />
-
-      <section className='flex h-full flex-row'>
-        <LeftSidebar allShapes={Array.from(canvasObjects)} />
-
-        <Live canvasRef={canvasRef} undo={undo} redo={redo} />
-
-        <RightSidebar
-          elementAttributes={elementAttributes}
-          setElementAttributes={setElementAttributes}
-          fabricRef={fabricRef}
-          isEditingRef={isEditingRef}
-          activeObjectRef={activeObjectRef}
-          syncShapeInStorage={syncShapeInStorage}
+            handleImageUpload({
+              file: e.target.files[0],
+              canvas: fabricRef as any,
+              shapeRef,
+              syncShapeInStorage,
+            });
+          }}
+          handleActiveElement={handleActiveElement}
         />
-      </section>
-    </main>
+
+        <section className='flex h-full flex-row'>
+          <LeftSidebar allShapes={Array.from(canvasObjects)} />
+
+          <Live canvasRef={canvasRef} undo={undo} redo={redo} />
+
+          <RightSidebar
+            elementAttributes={elementAttributes}
+            setElementAttributes={setElementAttributes}
+            fabricRef={fabricRef}
+            isEditingRef={isEditingRef}
+            activeObjectRef={activeObjectRef}
+            syncShapeInStorage={syncShapeInStorage}
+          />
+        </section>
+      </main>
+    </>
   );
 };
 
